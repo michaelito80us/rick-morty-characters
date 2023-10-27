@@ -31,7 +31,7 @@ Get up and running with your own instance of the project. Follow these simple st
 1. Clone the repository to your local workstation:
 
    ```shell
-   git clone https://github.com/your-repository/rick-and-morty-character-browser.git
+   git clone https://github.com/michaelito80us/rick-morty-characters.git
    ```
 
 2. Change your directory to the project's root:
@@ -59,19 +59,10 @@ Open your browser and visit [http://localhost:5173](http://localhost:5173). Voil
 - `fetchCharacters.js`: Responsible for asynchronous requests to the API.
 - `ScrollToTop.jsx`: A convenient button for returning to the top of the page.
 
-## Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
-
 ## Live Demo
 
 Experience the application: [Live Demo](https://your-demo-link.com/)
 
 ## Licensing
 
-This project is MIT licensed. See the [LICENSE.md](LICENSE.md) file for full details.
-
-```
-
-This revised README includes Vite as the build tool and omits references to Create React App. It's ready to be added to your project repository. Please replace placeholders like `your-repository` and `your-demo-link` with your information.
-```
+This project is MIT licensed.
