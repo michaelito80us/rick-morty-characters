@@ -63,7 +63,7 @@ Open your browser and visit [http://localhost:5173](http://localhost:5173). Voil
 
 ## Live Demo
 
-Experience the application: [Live Demo](https://your-demo-link.com/)
+Experience the application: [Live Demo](https://rick-morty-characters-6f9zns13l-michaelito80us.vercel.app/)
 
 ## Licensing
 
