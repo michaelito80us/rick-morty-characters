@@ -10,6 +10,9 @@ export default {
         "hero-pattern":
           "linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('https://res.cloudinary.com/dckqfwvh1/image/upload/v1697735262/rick-morty-characters_lzzakp.webp')",
       },
+      width: {
+        "100vw": "100vw",
+      },
     },
   },
   plugins: [],

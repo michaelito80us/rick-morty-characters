@@ -1,11 +1,12 @@
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import Results from "./Results";
-import fetchAllCharacters from "./fetchAllCharacters";
+// import Results from "./Results";
+import fetchCharacters from "./fetchCharacters";
 import ErrorBoundary from "./ErrorBoundary";
 import nextPageNumber from "./utils/nextPageNumber";
+import CharacterCard from "./CharacterCard";
 
-const Home = () => {
+const Home = ({ keyword }) => {
   const listEndRef = useRef(null);
   const {
     data,
@@ -15,12 +16,15 @@ const Home = () => {
     isFetching,
     isFetchingNextPage,
     status,
+    refetch,
   } = useInfiniteQuery({
-    queryKey: ["page"],
-    initialPageParam: 1,
-    queryFn: fetchAllCharacters,
+    queryKey: ["characters", keyword],
+    initialPageParam: { page: 1, keyword },
+    queryFn: fetchCharacters,
     getNextPageParam: (lastPage) => {
-      return nextPageNumber(lastPage);
+      const morePagesExist = lastPage.info.next;
+      if (morePagesExist === null) return undefined;
+      return { page: nextPageNumber(lastPage), keyword };
     },
   });
 
@@ -29,6 +33,10 @@ const Home = () => {
       fetchNextPage();
     }
   };
+
+  useEffect(() => {
+    refetch();
+  }, [keyword, refetch]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,34 +54,36 @@ const Home = () => {
 
     return () => {
       if (listEndRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(listEndRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   console.log("results", data);
 
-  return (
-    <div>
-      {status === "loading" ? (
-        <p>Loading...</p>
-      ) : status === "error" ? (
-        <p>Error: {error.message}</p>
-      ) : (
-        <div className="search-params">
-          <>
-            {data?.pages.map((page) => (
-              <Results key={page.info.next} characters={page.results} />
+  return status === "loading" ? (
+    <p>Loading...</p>
+  ) : status === "error" ? (
+    <p>Error: {error.message}</p>
+  ) : (
+    <>
+      <div className="m-8 flex flex-wrap justify-evenly gap-4">
+        {data?.pages[0].results.length === 0 && !isFetching && (
+          <p className="text-white/60 text-2xl">No results found</p>
+        )}
+        {data?.pages.map((group, index) => (
+          <Fragment key={index}>
+            {group.results.map((character) => (
+              <CharacterCard key={character.id} {...character} />
             ))}
-            <div ref={listEndRef} />
-            <div>
-              {isFetching && !isFetchingNextPage ? "Fetching..." : null}
-            </div>
-          </>
-        </div>
-      )}
-      ;
-    </div>
+          </Fragment>
+        ))}
+      </div>
+      <div ref={listEndRef} />
+      <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
+    </>
   );
 };
 

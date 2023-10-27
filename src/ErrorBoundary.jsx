@@ -7,15 +7,14 @@ class ErrorBoundary extends Component {
     return { hasError: true };
   }
   componentDidCatch(error, info) {
-    // here you would send the error to Sentry or an error tracking service, trackJS or NewRelic.
     console.error("ErrorBoundary caught an error", error, info);
   }
   render() {
     if (this.state.hasError) {
       return (
         <h2>
-          There was an error with this listing. <Link to="/">Click here</Link>{" "}
-          to back to the home page.
+          There was an error. <Link to="/">Click here</Link> to back to the home
+          page.
         </h2>
       );
     }

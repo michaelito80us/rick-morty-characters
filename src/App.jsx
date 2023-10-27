@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "./Home";
 import HeroBanner from "./HeroBanner";
+import { useState } from "react";
+import ScrollToTop from "./ScrollToTop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,14 +16,15 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
+  const [keyword, setKeyword] = useState("");
   return (
-    <div className="min-h-screen bg-[#282c34] text-center text-white selection:bg-green-900 ">
+    <div className="min-h-screen bg-[#282c34] text-center text-white selection:bg-green-900 pb-10 w-100vw">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
-          <HeroBanner />
+          <HeroBanner keyword={keyword} setKeyword={setKeyword} />
+          <ScrollToTop />
           <Routes>
-            {/* <Route path="/details/:id" element={<Details />} /> */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home keyword={keyword} />} />
           </Routes>
         </QueryClientProvider>
       </BrowserRouter>
