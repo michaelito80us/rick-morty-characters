@@ -38,7 +38,7 @@ Get up and running with your own instance of the project. Follow these simple st
 
 2. Change your directory to the project's root:
    ```shell
-   cd rick-and-morty-characters
+   cd rick-morty-characters
    ```
 3. Install all dependencies:
    ```shell
