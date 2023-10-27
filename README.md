@@ -1,5 +1,7 @@
 # Rick and Morty Character Browser
 
+![Rick & Morty](https://res.cloudinary.com/dckqfwvh1/image/upload/v1697735262/rick-morty-characters_lzzakp.webp)
+
 Explore characters from the "Rick and Morty" series through this sleek, user-friendly application. This project taps into the [Rick and Morty API](https://rickandmortyapi.com/documentation) and presents a seamless browsing experience, complete with an intuitive search feature.
 
 ## Features
