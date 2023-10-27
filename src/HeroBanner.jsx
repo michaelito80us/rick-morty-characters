@@ -1,5 +1,23 @@
 import { useState } from "react";
 
+const ClearIcon = ({ onClick }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-6 h-6 md:w-8 md:h-8 text-white/60 cursor-pointer"
+    onClick={onClick}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
+  </svg>
+);
+
 const HeroBanner = ({ keyword, setKeyword }) => {
   const [isFocused, setIsFocused] = useState(false);
   const handleKeyUp = (event) => {
@@ -27,21 +45,7 @@ const HeroBanner = ({ keyword, setKeyword }) => {
           />
           {keyword && (
             <div className="absolute right-3 bottom-0 h-full flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 md:w-8 md:h-8 text-white/60 cursor-pointer"
-                onClick={() => setKeyword("")}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <ClearIcon onClick={() => setKeyword("")} />
             </div>
           )}
         </div>

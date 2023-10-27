@@ -61,8 +61,6 @@ const Home = ({ keyword }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  console.log("results", data);
-
   return status === "loading" ? (
     <p>Loading...</p>
   ) : status === "error" ? (

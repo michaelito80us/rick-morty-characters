@@ -18,7 +18,7 @@ const queryClient = new QueryClient({
 const App = () => {
   const [keyword, setKeyword] = useState("");
   return (
-    <div className="min-h-screen bg-[#282c34] text-center text-white selection:bg-green-900 pb-10 w-100vw">
+    <div className="min-h-screen bg-[#282c34] text-center text-white selection:bg-green-900 pb-10 w-100vw font-poppins">
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
           <HeroBanner keyword={keyword} setKeyword={setKeyword} />
